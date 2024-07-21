@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    position: relative; /* Ensure the overlay and content are positioned relative to this container */
+    display: flex;
+    align-items: center;
+    background-color: gainsboro;
+    background-image: url(/forms/Images/dgps\ image.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    justify-content: space-between;
+    padding: 15px;
+    overflow: hidden; /* Prevent content from spilling out */
+}
+
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay color */
+    z-index: 1; /* Ensure the overlay is below the content */
+}
+
+.intro_text, .Form_main {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+}
+
+.intro_text {
+    max-width: 40%;
+    color: #fff; /* Change text color to white for better contrast */
+    font-family: sans-serif;
+}
+
+.intro_text h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.intro_text p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.intro_text a {
+    color: rgba(179, 255, 0, 0.979);
+}
+
+.Form_main {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.726);
+    padding: 25px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    box-shadow: 0 0 6px 0 rgb(119, 119, 119);
+    width: 20rem;
+}
+
+.Form_main h1 {
+    align-self: left;
+    margin: 0.5rem 0;
+}
+
+form {
+    display: grid;
+    width: 100%;
+}
+
+input[type='text'], input[type='email'], input[type='password'] {
+    width: 100%;
+    height: 2.5rem;
+    border: 1.5px solid rgba(35, 149, 241, 0.884);
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    text-decoration: none;
+    margin: 5px 1rem;
+    font-size: smaller;
+}
+
+.name_username {
+    display: flex;
+    gap: 10px;
+    margin: 0.5rem 0;
+}
+
+.my_div {
+    margin: 0.9rem 0;
+}
+
+.homeimg {
+    width: 5rem;
+}
+
+.checkbox_div {
+    display: flex;
+    justify-content: right;
+}
+
+.createacc_btn {
+    background-color: rgba(35, 149, 241, 0.884);
+    color: white;
+    font-weight: bolder;
+    height: 3rem;
+    border: none;
+    margin-top: 10px;
+    border-radius: 50px;
+    font-size: large;
+}
+
+.createacc_btn:active {
+    background-color: white;
+    border: 1px solid rgba(35, 149, 241, 0.884);
+    color: black;
+}
+
+@media (max-width: 726px) {
+    .wrapper {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .intro_text {
+        max-width: 80%; /* Increase the max-width to make the intro text wider */
+        margin: 0 15px 1rem 15px; /* Add margin to ensure it's not touching the edges */
+        padding: 20px;
+    }
+    .intro_text h2 {
+        font-size: 1.2rem; 
+    }
+    .intro_text p {
+        font-size: 0.9rem; 
+    }
+    .Form_main {
+        width: 70vw; /* Reduce the width to make the form smaller */
+        margin-left: 0;
+        margin-bottom: 1rem;
+        padding: 15px; 
+    }
+}
