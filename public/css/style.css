@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: gainsboro;
+    background-image: url(/img/dgps\ image.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    justify-content: space-between;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.intro_text, .Form_main {
+    position: relative;
+    z-index: 2;
+}
+
+.intro_text {
+    max-width: 40%;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.intro_text h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.intro_text p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.intro_text a {
+    color: rgba(179, 255, 0, 0.979);
+}
+
+.Form_main {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.726);
+    padding: 25px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    box-shadow: 0 0 6px 0 rgb(119, 119, 119);
+    width: 20rem;
+}
+
+.Form_main h1 {
+    align-self: left;
+    margin: 0.5rem 0;
+}
+
+form {
+    display: grid;
+    width: 100%;
+}
+
+input[type='text'], input[type='email'], input[type='password'] {
+    width: 100%;
+    height: 2.5rem;
+    border: 1.5px solid rgba(35, 149, 241, 0.884);
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    text-decoration: none;
+    margin: 5px 1rem;
+    font-size: smaller;
+}
+
+.my_div {
+    margin: 0.9rem 0;
+}
+
+.checkbox_div {
+    display: flex;
+    justify-content: right;
+}
+
+.createacc_btn {
+    background-color: rgba(35, 149, 241, 0.884);
+    color: white;
+    font-weight: bolder;
+    height: 3rem;
+    border: none;
+    margin-top: 10px;
+    border-radius: 50px;
+    font-size: large;
+}
+
+.createacc_btn:active {
+    background-color: white;
+    border: 1px solid rgba(35, 149, 241, 0.884);
+    color: black;
+}
+
+.message {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: sans-serif;
+}
+
+.success {
+    background-color: rgba(212, 237, 218, 0.7);
+    color: #155724;
+}
+
+.error {
+    background-color: rgba(248, 215, 218, 0.7);
+    color: #721c24;
+}
+
+@media (max-width: 726px) {
+    .wrapper {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .intro_text {
+        max-width: 80%;
+        margin: 0 15px 1rem 15px;
+        padding: 20px;
+    }
+    .intro_text h2 {
+        font-size: 1.2rem; 
+    }
+    .intro_text p {
+        font-size: 0.9rem; 
+    }
+    .Form_main {
+        width: 70vw;
+        margin-left: 0;
+        margin-bottom: 1rem;
+        padding: 15px; 
+    }
+}

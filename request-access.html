@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Access</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="intro_text">
+        <h2>Welcome to the Survey Control Finder and Information System</h2>
+        <p>
+            If you already have an account <a href="/">Click here to login</a>
+        </p>
+      </div>
+
+      <div class="Form_main">
+        <h1>Request Access</h1>
+        <form id="requestAccessForm">
+          <div class="my_div">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <button type="submit" class="createacc_btn">Request Access</button>
+        </form>
+        <!-- <div class="checkbox_div">
+          <a href="/">Click here to sign in</a>
+        </div> -->
+        <div id="message" class="message"></div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("requestAccessForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const messageEl = document.getElementById("message");
+          messageEl.style.display = "block";
+          messageEl.textContent = "Sending request...";
+          messageEl.className = "message";
+
+          fetch("/requestaccess", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: document.getElementById("email").value,
+            }),
+          })
+            .then((response) => {
+              console.log("Response status:", response.status);
+              return response.json().catch((error) => {
+                console.error("Error parsing JSON:", error);
+                return { success: false, error: "Invalid server response" };
+              });
+            })
+            .then((data) => {
+              console.log("Server response:", data);
+
+              if (data.success === true) {
+                messageEl.className = "message success";
+                messageEl.textContent =
+                  data.message ||
+                  "Access request successful. Please check your email and proceed to login.";
+
+                // Disable the form
+                document.getElementById("requestAccessForm").style.display =
+                  "none";
+
+                // Show a countdown for redirection
+                let countdown = 5;
+                const countdownInterval = setInterval(() => {
+                  messageEl.textContent = `${
+                    data.message ||
+                    "Access request successful. Please check your email and proceed to login."
+                  } Redirecting in ${countdown} seconds...`;
+                  countdown--;
+                  if (countdown < 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "/";
+                  }
+                }, 1000);
+              } else {
+                messageEl.className = "message error";
+                messageEl.textContent =
+                  "Error: " + (data.error || "An unknown error occurred.");
+              }
+            })
+            .catch((error) => {
+              console.error("Fetch error:", error);
+              messageEl.className = "message error";
+              messageEl.textContent =
+                "An error occurred while sending the request. Please try again.";
+            });
+        });
+    </script>
+  </body>
+</html>

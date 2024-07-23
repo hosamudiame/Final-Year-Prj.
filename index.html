@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="intro_text">
+            <h2>Welcome to the Survey Control Finder and Information System</h2>
+            <p>Please log in to find coordinates closest to you. If you don't have an account, please <a href="/requestaccess">click here to request access.</a></p>
+        </div>
+
+        <div class="Form_main">
+            <h1>Sign In</h1>
+            <form id="loginForm">
+                <div class="my_div content_div2">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="my_div content_div4">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="createacc_btn">Sign In</button>
+            </form>
+            <div class="checkbox_div">
+                <a href="/requestaccess">Click here to Request Access</a>
+            </div>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const messageEl = document.getElementById('message');
+            messageEl.style.display = 'block';
+            messageEl.textContent = 'Logging in...';
+            messageEl.className = 'message';
+            
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    messageEl.className = 'message success';
+                    messageEl.textContent = "Login successful. Redirecting...";
+                    window.location.href = data.redirect;
+                } else {
+                    messageEl.className = 'message error';
+                    messageEl.textContent = data.error || "Login failed. Please try again.";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageEl.className = 'message error';
+                messageEl.textContent = 'An error occurred. Please try again.';
+            });
+        });
+    </script>
+</body>
+</html>
