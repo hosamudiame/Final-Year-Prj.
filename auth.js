@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 function generateRandomString() {
-  const time = new Date().getTime(); // Use getTime() instead of getMilliseconds() for more variation
-  const randomNum = Math.floor(Math.random() * 1000); // Increased range for more randomness
+  const time = new Date().getTime(); 
+  const randomNum = Math.floor(Math.random() * 52); 
   const randomString = `${time}${randomNum}`;
-  return randomString.slice(-10); // Return last 10 digits to keep it a reasonable length
+  return randomString.slice(-5);
 }
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -74,20 +74,20 @@ app.post('/requestaccess', async (req, res) => {
   const password = generateRandomString();
 
   try {
-    // Check if user already exists
+    // Checking if user already exists///////////////////
     const existingUser = await User.findOne({ username: username });
     if (existingUser) {
       return res.json({ success: false, error: "User already exists" });
     }
 
-    // Create new user
+    // Create new user///////////////////////
     User.register(new User({ username: username }), password, function(err, user) {
       if (err) {
         console.error(err);
         return res.json({ success: false, error: err.message });
       }
 
-      // Send email
+      // Send email////////////////////
       const mailOptions = {
         from: process.env.EMAIL_USER, 
         to: email,
