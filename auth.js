@@ -14,8 +14,12 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const time = new Date().getMilliseconds();
-const randomNum = Math.floor(Math.random()*237);
+function generateRandomString() {
+  const time = new Date().getTime(); // Use getTime() instead of getMilliseconds() for more variation
+  const randomNum = Math.floor(Math.random() * 1000); // Increased range for more randomness
+  const randomString = `${time}${randomNum}`;
+  return randomString.slice(-10); // Return last 10 digits to keep it a reasonable length
+}
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -66,10 +70,8 @@ app.get("/mycontrols", function (req, res) {
 
 app.post('/requestaccess', async (req, res) => {
   const email = req.body.email;
-  const slice = req.body.email.slice(0,3);
-  const joined = slice + randomNum + time;
   const username = email;
-  const password = joined;
+  const password = generateRandomString();
 
   try {
     // Check if user already exists
@@ -90,8 +92,8 @@ app.post('/requestaccess', async (req, res) => {
         from: process.env.EMAIL_USER, 
         to: email,
         subject: 'Your Credentials',
-        text: `Hello,\n\nHere are your credentials:\n\nUsername: ${username}\nPassword: ${password}\n\nPlease log in and change your password.`,
-        html: `<p>Hello,</p><p>Here are your credentials:</p><p>Username: <strong>${username}</strong></p><p>Password: <strong>${password}</strong></p><p>Please log in and change your password.</p>`
+        text: `Hello,\n\nHere are your credentials:\n\nUsername: ${username}\nPassword: ${password}\n\nPlease log in.`,
+        html: `<p>Hello,</p><p>Here are your credentials:</p><p>Username: <strong>${username}</strong></p><p>Password: <strong>${password}</strong></p><p>Please log in</p>`
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
