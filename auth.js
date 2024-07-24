@@ -34,7 +34,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/surveyorsDB");
+mongoose.connect(`mongodb+srv://controlfinder:${process.env.PASS}@project-5.jc5oqew.mongodb.net/?retryWrites=true&w=majority&appName=Project-5`);
 
 const userSchema = new mongoose.Schema({
   username: String,
