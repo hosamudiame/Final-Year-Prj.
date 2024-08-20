@@ -14,7 +14,7 @@ const storeData = [
   },
   {
     name: 'GPS 02',
-    image: 'store-b.jpg',
+    image: '/img/gps02.jpg',
     coordinates: {
       lng: 6.45473,
       lat: 9.5343662
@@ -26,7 +26,7 @@ const storeData = [
   },
   {
     name: 'GPS 03',
-    image: 'store-b.jpg',
+    image: '/img/gps03.jpg',
     coordinates: {
       lng: 6.4531789,
       lat: 9.533052
@@ -38,7 +38,7 @@ const storeData = [
   },
   {
     name: 'GPS 04',
-    image: 'store-b.jpg',
+    image: '/public/img/gps04.jpg',
     coordinates: {
       lng: 6.4516211,
       lat: 9.5322585
@@ -50,7 +50,7 @@ const storeData = [
   },
   {
     name: 'GPS 05',
-    image: 'store-b.jpg',
+    image: '/img/gps05.jpg',
     coordinates: {
       lng: 6.4498772,
       lat: 9.5326402
@@ -254,7 +254,7 @@ const storeData = [
   },
   {
     name: 'GPS 22',
-    image: 'store-b.jpg',
+    image: '/public/img/gps22.jpg',
     coordinates: {
       lng: 6.4463259,
       lat: 9.5320832
