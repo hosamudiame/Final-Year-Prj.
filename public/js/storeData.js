@@ -122,7 +122,7 @@ const storeData = [
   },
   {
     name: 'GPS 11',
-    image: 'store-b.jpg',
+    image: '/img/gps11.jpg',
     coordinates: {
       lng: 6.4519506,
       lat: 9.5341798
@@ -134,7 +134,7 @@ const storeData = [
   },
   {
     name: 'GPS 12',
-    image: 'store-b.jpg',
+    image: '/img/gps12.jpg',
     coordinates: {
       lng: 6.4512416,
       lat: 9.5338908
@@ -350,7 +350,7 @@ const storeData = [
   },
   {
     name: 'CSN 251S',     				
-    image: 'store-b.jpg',
+    image: '/img/CSN251S.jpg',
     coordinates: {
       lng: 6.5201571,
       lat: 9.5938636
