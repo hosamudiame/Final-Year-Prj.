@@ -398,7 +398,7 @@ const storeData = [
   },
   {
     name: 'CSN 279S',
-    image: '/img/CSN279S',
+    image: '/img/CSN279S.jpg',
     coordinates: {
       lng: 6.564776,
       lat: 9.615459
@@ -410,7 +410,7 @@ const storeData = [
   },
   {
     name: 'CSN 244S',
-    image: '/img/CSN244S',
+    image: '/img/CSN244S.jpg',
     coordinates: {
       lng: 6.545428,
       lat: 9.608796
@@ -422,7 +422,7 @@ const storeData = [
   },
   {
     name: 'CSN 245S',
-    image: '/img/CSN245S',
+    image: '/img/CSN245S.jpg',
     coordinates: {
       lng: 6.542762,
       lat: 9.605893
@@ -434,7 +434,7 @@ const storeData = [
   },
   {
     name: 'CSN 246S',
-    image: '/img/CSN246S',
+    image: '/img/CSN246.jpg',
     coordinates: {
       lng: 6.542915,
       lat: 9.602270
